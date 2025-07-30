@@ -13,6 +13,7 @@ void main() async {
 
   // open a box
 
+  // ignore: unused_local_variable
   var box = await Hive.openBox("myBox");
 
   runApp(const MyApp());
