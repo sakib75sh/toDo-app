@@ -10,7 +10,7 @@ class TodoDatabase {
   // run this method if this is the first time ever opening the app
   void createInitialData() {
     todoList = [
-      ['Make Tutorial', false],
+      ['Make Tutorial', 'Submition Date', false],
     ];
   }
 

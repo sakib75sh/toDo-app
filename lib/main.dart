@@ -5,6 +5,7 @@ import 'package:to_do/src/bloc/login%20bloc/login_bloc.dart';
 
 // import 'package:to_do/src/presentation/screens/home_screen.dart';
 import 'package:to_do/src/presentation/screens/todo_screen.dart';
+import 'package:to_do/src/presentation/widgets/notification.dart';
 
 void main() async {
   //initial the hive
@@ -15,6 +16,12 @@ void main() async {
 
   // ignore: unused_local_variable
   var box = await Hive.openBox("myBox");
+
+  //for notification
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  NotificationServece().intiNotification();
 
   runApp(const MyApp());
 }

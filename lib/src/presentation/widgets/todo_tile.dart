@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:to_do/src/presentation/widgets/notification.dart';
 
 class TodoTile extends StatelessWidget {
   final String taskName;
+  final String inputDate;
   final bool completed;
   final Function(bool?)? onChanged;
   final Function(BuildContext)? deleteFunction;
@@ -12,6 +14,7 @@ class TodoTile extends StatelessWidget {
     required this.completed,
     required this.onChanged,
     required this.deleteFunction,
+    required this.inputDate,
   });
 
   @override
@@ -50,6 +53,16 @@ class TodoTile extends StatelessWidget {
                       ? TextDecoration.lineThrough
                       : TextDecoration.none,
                 ),
+              ),
+              Expanded(child: Container()),
+              TextButton(
+                onPressed: () {
+                  NotificationServece().showNotification(
+                    title: taskName,
+                    body: inputDate,
+                  );
+                },
+                child: Text("Press for notification"),
               ),
             ],
           ),

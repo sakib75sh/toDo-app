@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:to_do/src/Database/todo_database.dart';
 
 import 'package:to_do/src/presentation/widgets/dialog_box.dart';
+
 import 'package:to_do/src/presentation/widgets/todo_tile.dart';
 
 class TodoScreen extends StatefulWidget {
@@ -44,7 +45,7 @@ class _TodoScreenState extends State<TodoScreen> {
   // checkBox change
   void checkboxChanged(bool? value, int index) {
     setState(() {
-      db.todoList[index][1] = !db.todoList[index][1];
+      db.todoList[index][2] = !db.todoList[index][2];
     });
 
     db.updateData();
@@ -53,13 +54,14 @@ class _TodoScreenState extends State<TodoScreen> {
   // create new task
 
   final newTaskName = TextEditingController();
-
+  final inputDate = TextEditingController();
   void creatNewTask() {
     showDialog(
       context: context,
       builder: (context) {
         return DialogBox(
           textContrller: newTaskName,
+          datecontroller: inputDate,
           onSave: saveNewTask,
           onCancel: () => Navigator.of(context).pop(),
         );
@@ -71,9 +73,10 @@ class _TodoScreenState extends State<TodoScreen> {
 
   void saveNewTask() {
     setState(() {
-      db.todoList.add([newTaskName.text, false]);
+      db.todoList.add([newTaskName.text, inputDate.text, false]);
     });
     newTaskName.clear(); // textForm কে clear করার জন্য
+    inputDate.clear();
     Navigator.of(context).pop();
     db.updateData();
   }
@@ -96,12 +99,22 @@ class _TodoScreenState extends State<TodoScreen> {
         itemBuilder: (context, index) {
           return TodoTile(
             taskName: db.todoList[index][0],
-            completed: db.todoList[index][1],
+            inputDate: db.todoList[index][1],
+            completed: db.todoList[index][2],
+
             onChanged: (value) => checkboxChanged(value, index),
             deleteFunction: (context) => deleteTask(index),
           );
         },
       ),
+
+      //   TextButton(
+      //     onPressed: () {
+      //       // NotificationServece().showNotification();
+      //     },
+      //     child: Text("Press for notification"),
+      //   ),
+      // ],
       floatingActionButton: FloatingActionButton(
         // focusColor: Colors.amberAccent,
         // hoverColor: Colors.amberAccent,

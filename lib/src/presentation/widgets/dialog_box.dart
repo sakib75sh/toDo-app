@@ -6,6 +6,7 @@ import 'package:to_do/src/presentation/widgets/my_button.dart';
 
 class DialogBox extends StatelessWidget {
   final TextEditingController textContrller;
+  final TextEditingController datecontroller;
   final VoidCallback onSave;
   final VoidCallback onCancel;
   // final void Function()? onSave;
@@ -15,6 +16,7 @@ class DialogBox extends StatelessWidget {
     required this.textContrller,
     required this.onCancel,
     required this.onSave,
+    required this.datecontroller,
   });
 
   @override
@@ -27,14 +29,21 @@ class DialogBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Colors.amberAccent,
         ),
-        height: 150,
+        height: 200,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // user input
-              TextField(controller: textContrller),
+              TextField(
+                controller: textContrller,
+                decoration: InputDecoration(hint: Text('Task name')),
+              ),
+              TextField(
+                controller: datecontroller,
+                decoration: InputDecoration(hint: Text('Submition Date')),
+              ),
 
               Gap(20),
               // cancel or save button
