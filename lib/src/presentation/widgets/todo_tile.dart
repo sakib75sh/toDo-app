@@ -57,12 +57,25 @@ class TodoTile extends StatelessWidget {
               Expanded(child: Container()),
               TextButton(
                 onPressed: () {
+                  // NotificationServece().scheudleNotification(
+                  //   title: taskName,
+                  //   body: inputDate,
+                  //   hour: 17,
+                  //   minute: 08,
+                  // );
+                  // NotificationServece().scheudleNotification(
+                  //   title: taskName,
+                  //   body: inputDate,
+                  //   hour: 4,
+                  //   minute: 49,
+                  // );
+
                   NotificationServece().showNotification(
                     title: taskName,
                     body: inputDate,
                   );
                 },
-                child: Text("Press for notification"),
+                child: Text("Press for S notification"),
               ),
             ],
           ),
